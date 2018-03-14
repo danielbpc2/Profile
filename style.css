@@ -6,14 +6,17 @@ body {
   font-family: 'Montserrat', sans-serif;
   font-size: 1em;
 }
-
-div {
-  background-color: white;
+.cards {
   width: 720px;
-  margin: 10px auto;
+  background-color: white;
   padding: 10px;
   border-radius: 4px;
   box-shadow: 2px 2px 3px rgba(0,0,0,0.4)
+}
+
+.container {
+  width: 720px;
+  margin: 0 auto;
 }
 
 #header {
@@ -56,6 +59,7 @@ a:hover {
 ul {
   list-style: none;
 }
+
 .list-inline > li {
   display: inline-block;
   padding: 0px 20px;
@@ -71,4 +75,22 @@ ul {
   border-radius: 50%;
   height: 10rem;
   box-shadow: 2px 2px 3px rgba(0,0,0,0.4);
+}
+
+#sidebar {
+  background-color: rgba(0,0,0,0.2);
+  position: fixed;
+  width: 150px;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  padding: 0;
+}
+
+#sidebar > ul {
+  padding: 0;
+}
+.no_padding > li {
+  padding-left: 0px;
+  padding: 0px;
 }

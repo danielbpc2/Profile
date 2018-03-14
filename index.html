@@ -1,14 +1,24 @@
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Looking for DanielBPC? we got ya</title>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Lilita+One|Montserrat:300,400,700|Roboto:300,400,700" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-
-    <div id="header">
+<head>
+  <meta charset="UTF-8">
+  <title>Looking for DanielBPC? we got ya</title>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Lilita+One|Montserrat:300,400,700|Roboto:300,400,700" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="sidebar">
+    <ul class="no_padding">
+      <li>
+        <a href="#header">Info</a>
+      </li>
+      <li>
+        <a href="#skills">Skills</a>
+      </li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="cards" id="header">
       <img src="images/Profile_400x400.jpg" alt="Sup?" id="profile">
       <h1>Daniel B.P. Carvalho</h1>
       <h2>Lawyer/<code>Ruby</code> programmer.</h2>
@@ -21,7 +31,7 @@
         <li><a href="https://github.com/danielbpc2" target="_blank"><i class="fab fa-github"></i></a></li>
       </ul>
     </div>
-    <div>
+    <div class="cards" id="skills">
       <table>
         <tr>
           <td><img src="images/Adobe_Photoshop_CC_icon.svg" alt="" class="card_images"></td>
@@ -37,6 +47,7 @@
         </tr>
       </table>
     </div>
-    <img src="images/tumblr_static_animated-daniel-twtter.gif" alt="">
-  </body>
+  </div>
+  <img src="images/tumblr_static_animated-daniel-twtter.gif" alt="">
+</body>
 </html>
