@@ -15,6 +15,7 @@ body {
 }
 
 .container {
+  margin-left: 300px;
   width: 720px;
   margin: 0 auto;
 }
