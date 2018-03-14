@@ -94,4 +94,6 @@ ul {
 .no_padding > li {
   padding-left: 0px;
   padding: 0px;
+  margin-bottom: 10px;
 }
+
