@@ -1,0 +1,40 @@
+/* Your tabs CSS code here */
+.tabs {
+  display: flex;
+  font-weight: bold;
+  align-items: center;
+}
+
+.tab.active {
+  text-align: center;
+  background-color: white;
+  padding: 0 70px 20px 70px;
+  text-align: center;
+}
+
+.tab:hover {
+  filter: brightness(80%);
+}
+
+.tab {
+  text-align: center;
+  padding: 0 70px 20px 70px;
+  background-color: #746a66;
+  color: black;
+}
+
+.tabs .tab:first-child {
+  border-radius: 10px 0px 0px 0px;
+}
+
+.tabs .tab:last-child {
+  border-radius: 0px 10px 0px 0px;
+}
+
+.tab > a {
+  color: #ccc;
+}
+.tab.active > a > p {
+  color: black;
+}
+  color: black;

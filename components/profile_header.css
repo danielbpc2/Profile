@@ -1,0 +1,7 @@
+/* Your profile header CSS code here */
+.profile-header-wrapper {
+  display: flex;
+  background-color: #50423d;
+  text-align: center;
+  padding-top: 10px;
+}
