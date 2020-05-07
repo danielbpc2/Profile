@@ -1,0 +1,49 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 100px;
+  padding: 20px;
+  background-color: rgb(90, 90, 90);
+  border-radius: 12px;
+}
+body {
+  background-image: url("./tumblr_11453bf950050fb0bebc26201a3f8681_246e899a_640.gif");
+  background-size: contain;
+  color: white;
+}
+
+.drink-0 {
+  color: #91ccff;
+}
+.drink-1 {
+  color: #4cf5a6;
+}
+.drink-2 {
+  color: #ff8efc;
+}
+
+#drinkList {
+  font-size: 24px;
+}
+
+button {
+  padding: 15px;
+  margin: 10px;
+  border: none;
+  border-radius: 6px;
+  background-color: rgb(48, 177, 117);
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  font-family: cursive;
+  cursor: pointer;
+  user-select: none;
+}
+
+select {
+  font-size: 16px;
+  padding: 10px;
+  width: 200px;
+}

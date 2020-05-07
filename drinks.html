@@ -1,0 +1,204 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./index.js"></script>
+    <link rel="stylesheet" href="drinks.css" />
+    <title>Drink Maker</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Drinks:</h1>
+      <ol id="drinkList"></ol>
+      <h2 id="flavorText">
+        You Taste <span class="drink-0">Drink</span>
+        <span class="drink-1">Flavor</span>
+        <span class="drink-2">here</span>
+      </h2>
+      <h2>How Many Reagents Used:</h2>
+      <select onChange="handleSelect()" id="numberDrinks">
+        <option value="2">2 Reagents</option>
+        <option value="3">3 Reagents</option>
+      </select>
+      <div>
+        Category of Reagent 1:
+        <select id="select-category-0">
+          <option value="random,random">Random</option>
+        </select>
+      </div>
+      <div>
+        Category of Reagent 2:
+        <select id="select-category-1">
+          <option value="random,random">Random</option>
+        </select>
+      </div>
+      <div id="cat-3" style="display: none;">
+        Category of Reagent 3:
+        <select id="select-category-2">
+          <option value="random,random">Random</option>
+        </select>
+      </div>
+
+      <button onClick="handleClick()">Click to generate drink</button>
+
+      -----
+      <small style="text-align: center;">
+        Remember:
+
+        <p>
+          Most concentrated ingredient will be the name of the drink, Mixing
+          order is tasting order, Proportions determine whether it's a hint of
+          or the straight up flavor, Similar flavors might not be listed
+          separately
+        </p></small
+      >
+    </div>
+
+    <script>
+      const flavorBox = document.getElementById("flavorText").childNodes;
+      const drinkList = document.getElementById("drinkList");
+      const handleClick = () => {
+        let locks = document.querySelectorAll(".lock");
+        const number = parseInt(document.getElementById("numberDrinks").value);
+        const finalDrink = [];
+        let selectedCategories = [
+          document.getElementById("select-category-0").value.split(","),
+          document.getElementById("select-category-1").value.split(","),
+          document.getElementById("select-category-2").value.split(","),
+        ];
+        for (let i = 0; i < number; i++) {
+          if (locks.length != 0) {
+            if (locks[i] != undefined) {
+              if (locks[i].checked) {
+                finalDrink.push({
+                  ids: {
+                    category: locks[i].dataset.category,
+                    flavor: locks[i].dataset.flavor,
+                  },
+                  category: drinks[locks[i].dataset.category].category,
+                  drink:
+                    drinks[locks[i].dataset.category].drinks[
+                      locks[i].dataset.flavor
+                    ],
+                });
+                continue;
+              }
+            }
+          }
+          let randomNumber = Math.floor(Math.random() * drinks.length);
+
+          let category = {};
+          if (selectedCategories[i][0] == "random") {
+            category = drinks[randomNumber];
+          } else {
+            category = drinks[selectedCategories[i][0]];
+            randomNumber = selectedCategories[i][0];
+          }
+          let randomNumber2 = Math.floor(
+            Math.random() * category.drinks.length
+          );
+          let flavor = category.drinks[randomNumber2];
+          finalDrink.push({
+            ids: {
+              category: randomNumber,
+              flavor: randomNumber2,
+            },
+            category: category.category,
+            drink: flavor,
+          });
+        }
+        drinkList.innerHTML = "";
+        if (number == 2) {
+          flavorBox[5].innerText = "";
+        }
+        for (let index = 0; index < finalDrink.length; index++) {
+          drinkList.insertAdjacentHTML(
+            "beforeEnd",
+            `<li><span class="drink-${index}"><strong>${finalDrink[index].drink.name}</strong></span> from <span>${finalDrink[index].category}</span></li>
+            <input type="checkbox" class="lock" name="lock" data-category="${finalDrink[index].ids.category}" data-flavor="${finalDrink[index].ids.flavor}" /><label name="lock-1">Lock</label>`
+          );
+
+          if (number == 2 && index == 1) {
+            if (
+              finalDrink[index].drink.flavor ==
+              finalDrink[index - 1].drink.flavor
+            ) {
+              flavorBox[3].innerText = ``;
+            } else {
+              flavorBox[3].innerText = ` and ${finalDrink[index].drink.flavor}`;
+            }
+          } else if (number == 3 && index == 1) {
+            if (
+              finalDrink[index].drink.flavor ==
+              finalDrink[index - 1].drink.flavor
+            ) {
+              flavorBox[3].innerText = ``;
+            } else if (
+              finalDrink[index].drink.flavor ==
+              finalDrink[index + 1].drink.flavor
+            ) {
+              flavorBox[3].innerText = ``;
+            } else {
+              flavorBox[3].innerText = `, ${finalDrink[index].drink.flavor}`;
+            }
+          } else if (number == 3 && index == 2) {
+            if (
+              finalDrink[index].drink.flavor ==
+                finalDrink[index - 1].drink.flavor &&
+              finalDrink[index].drink.flavor ==
+                finalDrink[index - 2].drink.flavor
+            ) {
+              flavorBox[5].innerText = ``;
+            } else {
+              flavorBox[5].innerText = ` and ${finalDrink[index].drink.flavor} `;
+            }
+          } else {
+            flavorBox[1].innerText = finalDrink[index].drink.flavor;
+          }
+        }
+        const array = [];
+        for (let index = 0; index < locks.length; index++) {
+          if (locks[index].checked) {
+            array.push(index);
+          }
+        }
+        locks = document.querySelectorAll(".lock");
+        for (let index = 0; index < array.length; index++) {
+          if (array[index] <= number - 1) {
+            locks[array[index]].checked = true;
+          }
+        }
+      };
+    </script>
+    <script>
+      const handleSelect = () => {
+        if (event.target.value == 3) {
+          document.getElementById("cat-3").style.display = "block";
+        }
+        if (event.target.value == 2) {
+          document.getElementById("cat-3").style.display = "none";
+        }
+      };
+      drinks.forEach((element, index) => {
+        document
+          .getElementById("select-category-0")
+          .insertAdjacentHTML(
+            "beforeEnd",
+            `<option value="${index},${element.category}">${element.category}</option>`
+          );
+        document
+          .getElementById("select-category-1")
+          .insertAdjacentHTML(
+            "beforeEnd",
+            `<option value="${index},${element.category}">${element.category}</option>`
+          );
+        document
+          .getElementById("select-category-2")
+          .insertAdjacentHTML(
+            "beforeEnd",
+            `<option value="${index},${element.category}">${element.category}</option>`
+          );
+      });
+    </script>
+  </body>
+</html>
